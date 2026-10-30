@@ -15,18 +15,24 @@
                 font-family: 'Title';
             }
             header {
-                position: relative;
+                position: sticky;
+                top: 0;
+                z-index: 100;
+                background-color: #000;
+                border-bottom: 1px solid #333;
+                padding-bottom: 8px;
+            }
+            .header-top {
                 display: flex;
                 gap: 20px;
                 align-items: center;
-                border-bottom: 1px solid #333;
-                padding-bottom: 8px;
                 padding-right: 56px;
+                padding-bottom: 12px;   /* 标题/图标与 nav 之间留 12px */
             }
             header img {
                 display: block;
-                width: 100px;
-                height: auto;
+                height: 50px;
+                width: auto;
             }
             .layout {
                 display: block;
@@ -37,7 +43,7 @@
             }
             .menu-btn {
                 position: absolute;
-                top: 50%;
+                top: 28px;
                 right: 8px;
                 transform: translateY(-50%);
                 display: flex;
@@ -59,6 +65,29 @@
                 height: 3px;
                 background: #fff;
                 border-radius: 2px;
+            }
+            header nav {
+                display: flex;
+                justify-content: space-evenly;
+                background: #FFCC66;
+            }
+            header nav a {
+                flex: 1 1 0;
+                min-width: 0;
+                font-size: clamp(10px, 2.5vw, 16px);
+                padding: clamp(2px, 1vw, 8px) clamp(4px, 2vw, 16px);
+                display: inline-block;
+                color: #A36D00;
+                text-decoration: none;
+                font-weight: 500;
+                text-align: center;
+                border-right: 2px solid #FFE7B8;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            header nav a:hover {
+                background: #FFAA66;
             }
             aside {
                 position: fixed;
@@ -127,29 +156,6 @@
                 font-family: 'Title';
                 src: url('fonts/zpix.ttf') format('truetype');
             }
-            nav {
-                display: flex;
-                justify-content: space-evenly;
-                background: #FFCC66;
-            }
-            nav a {
-                flex: 1 1 0;
-                min-width: 0;
-                font-size: clamp(10px, 2.5vw, 16px);
-                padding: clamp(2px, 1vw, 8px) clamp(4px, 2vw, 16px);
-                display: inline-block;
-                color: #A36D00;
-                text-decoration: none;
-                font-weight: 500;
-                text-align: center;
-                border-right: 2px solid #FFE7B8;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
-            nav a:hover {
-                background: #FFAA66;
-            }
             article img {
                 width: 80vw;
                 height: auto;
@@ -157,7 +163,7 @@
                 margin: 0 auto;
             }
             section {
-                scroll-margin-top: 70px;
+                scroll-margin-top: 140px;
             }
             section h4 a {
                 display: inline-block;
@@ -201,9 +207,10 @@
             }
 
             @media (max-width: 480px) {
-                header {
+                .header-top {
                     gap: 10px;
                     padding-right: 48px;
+                    padding-bottom: 10px;
                 }
                 h1 {
                     font-size: 14px;
@@ -213,6 +220,7 @@
                     width: 36px;
                     height: 36px;
                     padding: 6px;
+                    top: 25px;
                 }
                 .menu-btn span {
                     width: 20px;
@@ -237,9 +245,8 @@
             .footer-nav {
                 display: flex;
                 justify-content: space-evenly;
-                background: #FFCC66;;
+                background: #FFCC66;
                 flex-wrap: wrap;
-                justify-content: center;
                 margin-bottom: 12px;
             }
             .footer-nav a {
@@ -268,16 +275,25 @@
     </head>
     <body>
         <header>
-            <img src="img/Icon.jpg">
-            <h1>
-                <span class="nowrap">Nightfall, Dawnwatch</span>
-                <span class="nowrap">黑夜将至，塔观黎明</span>
-            </h1>
+            <div class="header-top">
+                <img src="img/Icon.jpg">
+                <h1>
+                    <span class="nowrap">Nightfall, Dawnwatch</span>
+                    <span class="nowrap">黑夜将至，塔观黎明</span>
+                </h1>
+            </div>
             <button class="menu-btn" aria-label="开发详情">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
+            <nav>
+                <a href="#Introduction">Introduction</a>
+                <a href="#Details">Details</a>
+                <a href="#Participants">Participants</a>
+                <a href="#Download">Download</a>
+                <a href="#Contact">Contact</a>
+            </nav>
         </header>
         <div class="layout">
             <aside>
@@ -302,13 +318,6 @@
                     <dd>---</dd>
                 </dl>
             </aside>
-            <nav>
-                <a href="#Introduction">Introduction</a>
-                <a href="#Details">Details</a>
-                <a href="#Participants">Participants</a>
-                <a href="#Download">Download</a>
-                <a href="#Contact">Contact</a>
-            </nav>
             <main>
                 <article>
                     <img src="img/Cover.PNG">
@@ -424,8 +433,15 @@
             function resizeHeaderImg() {
                 const header = document.querySelector('header');
                 const img = header.querySelector('img');
-                img.style.height = (header.clientHeight * 0.8) + 'px';
+                const h1 = header.querySelector('h1');
+                const menuBtn = header.querySelector('.menu-btn');
+                const titleLineHeight = parseFloat(getComputedStyle(h1).lineHeight);
+                // 固定 50px，不再随标题缩放
+                img.style.height = '50px';
                 img.style.width = 'auto';
+                // 按钮垂直居中在标题第一行
+                const topOffset = titleLineHeight * 0.5 + 8;
+                menuBtn.style.top = topOffset + 'px';
             }
             window.addEventListener('load', resizeHeaderImg);
             window.addEventListener('resize', resizeHeaderImg);
@@ -448,14 +464,14 @@
     </body>
     <footer>
         <div class="social">
-        <a href="https://xhslink.cn/m/445wxypXDV8" target="_blank">&nbsp;小红书&nbsp;</a>
+            <a href="https://xhslink.cn/m/445wxypXDV8" target="_blank">&nbsp;小红书&nbsp;</a>
         </div>
         <nav class="footer-nav">
-        <a href="#Introduction">Introduction/a>
-        <a href="#Details">Details</a>
-        <a href="#Participants">Participants</a>
-        <a href="#Download">Download</a>
-        <a href="#Contact">Contact</a>
+            <a href="#Introduction">Introduction</a>
+            <a href="#Details">Details</a>
+            <a href="#Participants">Participants</a>
+            <a href="#Download">Download</a>
+            <a href="#Contact">Contact</a>
         </nav>
         <p class="copyright">
             &copy;2026 Nightfall, Dawnwatch
