@@ -27,7 +27,7 @@
                 gap: 20px;
                 align-items: center;
                 padding-right: 56px;
-                padding-bottom: 12px;   /* 标题/图标与 nav 之间留 12px */
+                padding-bottom: 12px;
             }
             header img {
                 display: block;
@@ -189,7 +189,6 @@
                 background: #FFAA66;
             }
 
-            /* Contact 区块 */
             #Contact {
                 padding: 40px 0;
             }
@@ -436,10 +435,8 @@
                 const h1 = header.querySelector('h1');
                 const menuBtn = header.querySelector('.menu-btn');
                 const titleLineHeight = parseFloat(getComputedStyle(h1).lineHeight);
-                // 固定 50px，不再随标题缩放
                 img.style.height = '50px';
                 img.style.width = 'auto';
-                // 按钮垂直居中在标题第一行
                 const topOffset = titleLineHeight * 0.5 + 8;
                 menuBtn.style.top = topOffset + 'px';
             }
