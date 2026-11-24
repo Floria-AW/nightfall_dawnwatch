@@ -220,7 +220,7 @@
                 width: 96px;
                 height: 96px;
                 object-fit: cover;
-                border-radius: 8px;
+                border-radius: 50%;
                 margin: 0 auto 12px;
                 border: 2px solid #FFCC66;
                 background: #222;
@@ -250,6 +250,20 @@
                 font-size: 14px;
                 line-height: 1.7;
                 color: #ddd;
+            }
+
+            .poster-grid {
+                columns: 4 220px;
+                column-gap: 16px;
+            }
+            .poster-grid img {
+                width: 100%;
+                height: auto;
+                display: block;
+                margin-bottom: 16px;
+                border-radius: 8px;
+                border: 1px solid #333;
+                break-inside: avoid;
             }
 
             #Contact {
@@ -387,6 +401,26 @@
 
                 <section id="Posters">
                     <h2>Posters</h2>
+                    <div class="poster-grid">
+                        <img src="img/Posters/1.png" alt="Poster 1" loading="lazy">
+                        <img src="img/Posters/2.png" alt="Poster 2" loading="lazy">
+                        <img src="img/Posters/3.png" alt="Poster 3" loading="lazy">
+                        <img src="img/Posters/4.png" alt="Poster 4" loading="lazy">
+                        <img src="img/Posters/5.png" alt="Poster 5" loading="lazy">
+                        <img src="img/Posters/6.png" alt="Poster 6" loading="lazy">
+                        <img src="img/Posters/7.png" alt="Poster 7" loading="lazy">
+                        <img src="img/Posters/8.png" alt="Poster 8" loading="lazy">
+                        <img src="img/Posters/9.png" alt="Poster 9" loading="lazy">
+                        <img src="img/Posters/10.png" alt="Poster 10" loading="lazy">
+                        <img src="img/Posters/11.png" alt="Poster 11" loading="lazy">
+                        <img src="img/Posters/12.png" alt="Poster 12" loading="lazy">
+                        <img src="img/Posters/13.png" alt="Poster 13" loading="lazy">
+                        <img src="img/Posters/14.png" alt="Poster 14" loading="lazy">
+                        <img src="img/Posters/15.png" alt="Poster 15" loading="lazy">
+                        <img src="img/Posters/16.png" alt="Poster 16" loading="lazy">
+                        <img src="img/Posters/17.png" alt="Poster 17" loading="lazy">
+                        <img src="img/Posters/18.png" alt="Poster 18" loading="lazy">
+                    </div>
                 </section>
 
                 <section id="CharacterCards">
@@ -461,7 +495,7 @@
                         </div>
 
                         <div class="character-card">
-                            <img class="pfp" src="img/pfp/Ludwig.png" alt="路德维希" loading="lazy">
+                            <img class="pfp" src="img/pfp/LudwigBeilschmidt.png" alt="路德维希" loading="lazy">
                             <h3>路德维希</h3>
                             <p class="quote">「水平线丈量的国土，是黎明初升的辉光」</p>
                             <p class="role">大学生 / 电气工程师 · 伪装年龄 18 岁</p>
@@ -530,7 +564,7 @@
                         </div>
 
                         <div class="character-card">
-                            <img class="pfp" src="img/pfp/FrançoisBonnefoy.png" alt="弗朗索瓦" loading="lazy">
+                            <img class="pfp" src="img/pfp/FrancoisBonnefoy.png" alt="弗朗索瓦" loading="lazy">
                             <h3>弗朗索瓦</h3>
                             <p class="quote">「锈水腐朽剥离骨肉，恒常喜乐事态恒古」</p>
                             <p class="role">异色方</p>
